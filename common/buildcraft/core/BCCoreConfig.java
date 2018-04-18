@@ -31,6 +31,9 @@ import buildcraft.lib.config.FileConfigManager;
 import buildcraft.lib.misc.ConfigUtil;
 import buildcraft.lib.registry.RegistryConfig;
 
+import ic2.core.block.generator.tileentity.TileEntitySemifluidGenerator;
+
+
 public class BCCoreConfig {
     private static final List<Consumer<EnumRestartRequirement>> reloadListeners = new ArrayList<>();
 
@@ -222,6 +225,29 @@ public class BCCoreConfig {
     }
 
     public static void postInit() {
+        /*
+        BCEnergyFluids.fuelGaseous = EU_PER_OIL*1/2
+        BCEnergyFluids.fuelLight = EU_PER_OIL*2
+        BCEnergyFluids.fuelDense = EU_PER_OIL*4
+        BCEnergyFluids.fuelMixedLight = EU_PER_OIL*8/10
+        BCEnergyFluids.fuelMixedHeavy = EU_PER_OIL*8/5
+        BCEnergyFluids.oilDense = EU_PER_OIL*4
+        BCEnergyFluids.oilDistilled = EU_PER_OIL
+        BCEnergyFluids.oilHeavy = EU_PER_OIL*8/3
+        BCEnergyFluids.crudeOil = EU_PER_OIL
+        */
+        // oil = 10 mB/t, 8 EU/mB    => 8  [k EU/B] , 80 EU/t (EU_PER_OIL)
+        // higher amount => higher EC/t
+        TileEntitySemifluidGenerator.addFuel("fuel_gaseous", 5, 4);
+        TileEntitySemifluidGenerator.addFuel("fuel_light", 10, 16);
+        TileEntitySemifluidGenerator.addFuel("fuel_dense", 20, 32);
+        TileEntitySemifluidGenerator.addFuel("fuel_mixed_light", 5, 6);
+        TileEntitySemifluidGenerator.addFuel("fuel_mixed_heavy", 10, 12);
+        TileEntitySemifluidGenerator.addFuel("oil_dense", 10, 32);
+        TileEntitySemifluidGenerator.addFuel("oil_distilled", 20, 8);
+        TileEntitySemifluidGenerator.addFuel("oil_heavy", 3, 24);
+        // TileEntitySemifluidGenerator.addFuel("oil", 10, 8);  // set by IC2
+
         ConfigUtil.setLang(config);
         if (config.hasChanged()) {
             config.save();

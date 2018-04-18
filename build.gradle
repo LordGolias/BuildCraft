@@ -71,6 +71,8 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
+    compile files("Industrial-Craft-2-Mod-Experimental-1.12.1.jar")
+
     // Testing
     testCompile "junit:junit:4.12"
 }

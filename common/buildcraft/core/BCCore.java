@@ -36,7 +36,7 @@ import buildcraft.core.marker.VolumeCache;
     name = "BuildCraft Core",
     version = BCLib.VERSION,
     updateJSON = "https://mod-buildcraft.com/version/versions.json",
-    dependencies = "required-after:buildcraftlib@[" + BCLib.VERSION + "]",
+    dependencies = "required-after:buildcraftlib@[" + BCLib.VERSION + "];after:IC2",
     guiFactory = "buildcraft.core.client.ConfigGuiFactoryBC"
 )
 //@formatter:on
